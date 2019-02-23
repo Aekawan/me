@@ -10,10 +10,10 @@ import Profile from './Profile'
 import Skills from './Skills'
 import Works from './Works'
 import Contents from './Contents'
+import Github from './Github'
 import Activity from './Activity'
 import Footer from './Footer'
 import * as data from 'src/constants/data'
-
 const Content = styled.div`
 `
 
@@ -52,6 +52,9 @@ class Main extends Component {
                                 </div>
                                 <div id={data.menu.works}>
                                     <Works />
+                                </div>
+                                <div id={data.menu.github}>
+                                    <Github />
                                 </div>
                                 <div id={data.menu.contents}>
                                     <Contents />

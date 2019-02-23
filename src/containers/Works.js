@@ -17,7 +17,7 @@ class Works extends Component {
         return (
             <Wrapper>
                 <ParallaxScroll src={ImageSVG} x={70} y={20} />
-                <Title title={'PUBLIC PROJECT'} light />
+                <Title title={'WORK'} light />
                 <WorkSlide items={data.works} />
             </Wrapper>
         )

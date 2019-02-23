@@ -24,6 +24,7 @@ class Menu extends Component {
             data.menu.works,
             data.menu.contents,
             data.menu.activity,
+            data.menu.github,
         ]
         this.state = {
             isMenuShow: false

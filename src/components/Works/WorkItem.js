@@ -1,6 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import color from 'src/constants/color'
+import Modal from 'react-responsive-modal'
+import styles from './custom-modal.css'
+import LightBox from 'react-images';
+import { css, StyleSheet } from 'aphrodite/no-important';
 
 const Wrapper = styled.div`
     display: flex;
@@ -82,28 +86,202 @@ const Tech = styled.label`
     }
 `
 
-export default ({ item }) => {
-    return (
-        <Wrapper id={'parallax'}>
-            <CircleBorder>
-                <Circle>
-                    <Image src={item.img} />
-                </Circle>
-            </CircleBorder>
-            <TextGroup>
-                <Name>
-                    <a href={item.repo} target={'_blank'}>
-                        {item.name}
-                    </a>
-                </Name>
-                <TechList>
-                    {
-                        item.tech.split('|').map((tech, i) => {
-                            return <Tech key={i} className={`icon-${tech}`} />
-                        })
-                    }
-                </TechList>
-            </TextGroup>
-        </Wrapper>
-    )
+const H2 = styled.h2`
+    color: #212121;
+    margin-bottom: 20px;
+`
+
+export default class WorkItem extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            open: false,
+            lightBoxIsOpen: false,
+            currentImage: 0,
+            images: [],
+            content: ''
+        }
+    }
+
+    componentDidMount() {
+        const { item } = this.props
+        this.setImages(item.images)
+    }
+
+    setImages = (images) => {
+        this.setState({ images })
+    }
+
+    onOpenModal = () => {
+        this.setState({ open: true });
+    }
+    
+    onCloseModal = () => {
+        this.setState({ open: false });
+    }
+
+    openLightBox = (index, event) => {
+		event.preventDefault();
+		this.setState({
+			currentImage: index,
+			lightBoxIsOpen: true,
+		})
+	}
+	closeLightBox = () => {
+		this.setState({
+			currentImage: 0,
+			lightBoxIsOpen: false,
+		})
+	}
+	gotoPrevious = () => {
+		this.setState({
+			currentImage: this.state.currentImage - 1,
+		})
+	}
+	gotoNext = () => {
+		this.setState({
+			currentImage: this.state.currentImage + 1,
+		})
+	}
+	gotoImage = (index) => {
+		this.setState({
+			currentImage: index,
+		})
+	}
+
+	handleClickImage = () => {
+		if (this.state.currentImage === this.props.images.length - 1) return;
+		this.gotoNext()
+	}
+
+	renderGallery = () => {
+		const { item } = this.props;
+
+		if (!item.images) return;
+
+		const gallery = item.images.map((obj, i) => {
+            console.log(obj.src);
+			return (
+				<a
+					href={obj.src}
+					className={css(classes.thumbnail, classes[obj.orientation])}
+					key={i}
+					onClick={(e) => this.openLightBox(i, e)}
+				>
+					<img src={obj.thumbnail} className={css(classes.source)} style={{ marginBottom: 10 }} />
+				</a>
+			);
+		});
+
+		return (
+			<div className={css(classes.gallery)}>
+				{gallery}
+			</div>
+		);
+	}
+
+    render() {
+        const { item } = this.props
+        const { open, images, currentImage, lightBoxIsOpen } = this.state
+        return (
+            <React.Fragment>
+            <Modal 
+            open={open} 
+            onClose={this.onCloseModal} 
+            center
+            classNames={{
+            overlay: styles.customOverlay,
+            modal: styles.customModal,
+            }}
+            >
+            <H2>{item.content}</H2>
+            { this.renderGallery() }
+            </Modal>
+            <LightBox
+                currentImage={currentImage}
+                images={item.images}
+                isOpen={lightBoxIsOpen}
+                onClickImage={this.handleClickImage}
+                onClickNext={this.gotoNext}
+                onClickPrev={this.gotoPrevious}
+                onClickThumbnail={this.gotoImage}
+                onClose={this.closeLightBox}
+			/>
+            <Wrapper id={'parallax'}>
+                <CircleBorder onClick={this.onOpenModal}>
+                    <Circle>
+                        <Image src={item.img} />
+                    </Circle>
+                </CircleBorder>
+                <TextGroup>
+                    <Name>
+                        <a href={item.repo} target={'_blank'}>
+                            {item.name}
+                        </a>
+                    </Name>
+                    <TechList>
+                        {
+                            item.tech.split('|').map((tech, i) => {
+                                return <Tech key={i} className={`icon-${tech}`} />
+                            })
+                        }
+                    </TechList>
+                </TextGroup>
+            </Wrapper>
+            </React.Fragment>
+        )
+    }
 }
+
+const gutter = {
+	small: 2,
+	large: 4,
+};
+const classes = StyleSheet.create({
+	gallery: {
+		marginRight: -gutter.small,
+		overflow: 'hidden',
+
+		'@media (min-width: 500px)': {
+			marginRight: -gutter.large,
+		},
+	},
+
+	// anchor
+	thumbnail: {
+		boxSizing: 'border-box',
+		display: 'block',
+		float: 'left',
+		lineHeight: 0,
+		paddingRight: gutter.small,
+		paddingBottom: gutter.small,
+		overflow: 'hidden',
+
+		'@media (min-width: 500px)': {
+			paddingRight: gutter.large,
+			paddingBottom: gutter.large,
+		},
+	},
+
+	// orientation
+	landscape: {
+		width: '30%',
+	},
+	square: {
+		paddingBottom: 0,
+		width: '40%',
+
+		'@media (min-width: 500px)': {
+			paddingBottom: 0,
+		},
+	},
+
+	// actual <img />
+	source: {
+		border: 0,
+		display: 'block',
+		height: 'auto',
+		maxWidth: '100%',
+		width: 'auto',
+	},
+});
