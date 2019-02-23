@@ -64,7 +64,7 @@ export const works = [
         img: require('src/images/TrustMe/1.png'),
         repo: '',
         tech: 'react',
-        content: 'TrustMe แอปพลิเคชั่นตัวกลางระหว่างทนายและผู้ที่ต้องการคำปรึกษาเรื่องกฎหมาย ที่ทำให้การพปรึกษาพูดคุยสะดวกมากยิ่งขึ้น',
+        content: 'TrustMe แอปพลิเคชันตัวกลางระหว่างทนายและผู้ที่ต้องการคำปรึกษาเรื่องกฎหมาย ที่ทำให้การปรึกษาพูดคุยสะดวกมากยิ่งขึ้น',
         images: [
             {
                 thumbnail: require('src/images/TrustMe/1.png'),
@@ -154,7 +154,7 @@ export const works = [
         img: require('src/images/Mechy/1.png'),
         repo: '',
         tech: 'react',
-        content: 'Mechy แอปพลิเคชั่นค้นหาและเรื่องใช้บริการร้านซ่อนรถผง่ายๆ ผ่านแอปพลิเคชั่น',
+        content: 'Mechy แอปพลิเคชันค้นหาและเรียกใช้บริการร้านซ่อมรถผง่ายๆ ผ่านแอปพลิเคชัน',
         images: [
             {
                 thumbnail: require('src/images/Mechy/1.png'),
@@ -189,7 +189,7 @@ export const works = [
         img: require('src/images/BusX/1.png'),
         repo: '',
         tech: 'react',
-        content: 'BusX App แอปพลิเคชั่นเรียกและจองรถโดยสารประจำทางออนไลน์ผ่านแอปพลิเคชั่น ทำให้สะดวกมากยิ่งขึ้น',
+        content: 'BusX App แอปพลิเคชันจองและเรียกใช้บริการรถโดยสารประจำทางออนไลน์ผ่านแอปพลิเคชัน ทำให้ผู้ใช้สะดวกมากยิ่งขึ้น',
         images: [
             {
                 thumbnail: require('src/images/BusX/1.png'),
@@ -254,7 +254,7 @@ export const works = [
         img: require('src/images/blood/1.png'),
         repo: 'https://github.com/Aekawan/Blood-bank-Web',
         tech: 'php|bootstrap|mysql',
-        content: 'BloodBank เว็บไซต์ธนาคารเลือตัวกลางเรื่องการบริจาคเลือด ทำให้ผู้ที่ต้องการเลือดหรือผู้ที่ต้องการบริจาคเลือดสะดวกมากยิ่งขึ้น',
+        content: 'BloodBank เว็บไซต์ธนาคารโลหิตตัวกลางเรื่องการบริจาคโลหิต ทำให้ผู้ที่ต้องการโลหิตหรือผู้ที่ต้องการบริจาคโลหิตสะดวกมากยิ่งขึ้น',
         images: [
             {
                 thumbnail: require('src/images/blood/1.png'),
@@ -464,7 +464,7 @@ export const works = [
         img: require('src/images/shopatchina/1.png'),
         repo: '',
         tech: '',
-        content: 'ShopAtChina เว็บไซต์ซื้อสินค้าจากจีนที่ทำให้ผู้ซื้อสะดวกสบายยิ่งขึ้น',
+        content: 'ShopAtChina เว็บไซต์สั่งซื้อสินค้าจากจีนที่ทำให้ผู้ซื้อสะดวกสบายยิ่งขึ้น',
         images: [
             {
                 thumbnail: require('src/images/shopatchina/1.png'),
@@ -499,7 +499,7 @@ export const works = [
         img: require('src/images/dorm/1.png'),
         repo: '',
         tech: 'csharp',
-        content: 'Dormitory Reserve System เว็บไซต์ระบบของห้องพักสำหรับนักศึกษาชาย',
+        content: 'Dormitory Reserve System เว็บไซต์ระบบจองห้องพักสำหรับนักศึกษาชายมหาวิทยาลัยสขลานครินทร์ วิทยาเขตภูเก็ต',
         images: [
             {
                 thumbnail: require('src/images/dorm/1.png'),
