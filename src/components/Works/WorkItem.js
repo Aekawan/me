@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import color from 'src/constants/color'
 import Modal from 'react-responsive-modal'
-import styles from './custom-modal.css'
 import LightBox from 'react-images';
 import { css, StyleSheet } from 'aphrodite/no-important';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -168,7 +169,12 @@ export default class WorkItem extends React.Component {
 					key={i}
 					onClick={(e) => this.openLightBox(i, e)}
 				>
-					<img src={obj.thumbnail} className={css(classes.source)} style={{ marginBottom: 10 }} />
+                    <LazyLoadImage
+                        alt={''}
+                        src={obj.thumbnail} // use normal <img> attributes as props
+                        style={{ marginBottom: 10 }}
+                        className={css(classes.source)}
+                    />
 				</a>
 			);
 		});
@@ -189,9 +195,11 @@ export default class WorkItem extends React.Component {
             open={open} 
             onClose={this.onCloseModal} 
             center
-            classNames={{
-            overlay: styles.customOverlay,
-            modal: styles.customModal,
+            styles={{
+            modal: {
+                height: 650,
+                overflow: 'scroll'
+            }
             }}
             >
             <H2>{item.content}</H2>
@@ -215,7 +223,7 @@ export default class WorkItem extends React.Component {
                 </CircleBorder>
                 <TextGroup>
                     <Name>
-                        <a href={item.repo} target={'_blank'}>
+                        <a onClick={this.onOpenModal} target={'_blank'}>
                             {item.name}
                         </a>
                     </Name>

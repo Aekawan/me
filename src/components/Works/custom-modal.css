@@ -3,6 +3,9 @@
 }
 .customModal {
   background: #b2dbbf;
+  max-height: 700px;
   max-width: 800px;
   width: 100%;
+  height: 700px;
+  overflow: scroll;
 }
